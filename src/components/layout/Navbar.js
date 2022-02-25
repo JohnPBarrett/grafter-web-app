@@ -5,7 +5,7 @@ import './NavBar.css';
 
 const Nav = function () {
   const [error, setError] = useState('');
-  const { logout } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Nav = function () {
     }
   };
 
-  return (
+  return currentUser ? (
     <nav>
       <Link to="/" className="Nav__logo" onClick={() => window.scrollTo(0, 0)}>
         Grafter
@@ -30,6 +30,8 @@ const Nav = function () {
       </button>
       {error && <h1>{error}</h1>}
     </nav>
+  ) : (
+    <nav className="Nav__logo">Welcome to Grafter</nav>
   );
 };
 
